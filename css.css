@@ -80,3 +80,52 @@ body {
     display: block;
     margin-top: 5px;
 }
+/* Celulares */
+@media (max-width: 768px) {
+
+    header{
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    nav{
+        margin-top: 15px;
+    }
+
+    nav a{
+        display: block;
+        margin: 10px 0;
+        text-align: center;
+    }
+
+    h2{
+        font-size: 30px;
+    }
+
+    section{
+        padding: 70px 20px;
+    }
+
+    p{
+        text-align: justify;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    form{
+        width: 100%;
+    }
+
+    input,
+    textarea,
+    button{
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    iframe,
+    img{
+        max-width: 100%;
+        height: auto;
+    }
+}

@@ -13,11 +13,17 @@ html {
     scroll-behavior: smooth;
 }
 
+/* [NOVO] Box-sizing global — evita estouros de largura no mobile */
+*, *::before, *::after { box-sizing: border-box; }
+
+/* [NOVO] Trava overflow horizontal — nada vaza pra fora da tela */
+html, body { max-width: 100%; overflow-x: hidden; }
+
 section{
     max-width: 1000px;
     margin: 0 auto;
     padding: 100px 20px;
-    
+
 }
 
 h2{
@@ -26,7 +32,7 @@ h2{
     margin-bottom: 50px;
 }
 
-footer{ 
+footer{
     text-align: center;
 }
 
@@ -80,52 +86,149 @@ body {
     display: block;
     margin-top: 5px;
 }
-/* Celulares */
+
+/* =============================================================
+   Celulares — ?768px (TABLET / MOBILE GERAL)
+   ============================================================= */
 @media (max-width: 768px) {
 
-    header{
+    /* [CRÍTICO] Navbar fixa empilhada fica ~150px de altura.
+       Aumentamos o padding-top do body pra evitar que a navbar
+       cubra o conteúdo da primeira section. */
+    body {
+        padding-top: 150px;
+    }
+
+    /* Navbar (header) empilha em coluna */
+    .navbar,
+    header {
         flex-direction: column;
-        padding: 15px;
+        padding: 12px 16px;
+        gap: 10px;
     }
 
-    nav{
-        margin-top: 15px;
+    /* [NOVO] Logo reduz e quebra linha se precisar */
+    .logo {
+        font-size: 17px;
+        text-align: center;
+        line-height: 1.3;
     }
 
-    nav a{
+    nav {
+        margin-top: 0; /* o gap da navbar já cuida do espaçamento */
+        width: 100%;
+    }
+
+    /* Links empilhados, área de toque maior */
+    .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav a {
         display: block;
-        margin: 10px 0;
+        margin: 0;            /* substituído pelo gap do .nav-links */
+        padding: 4px 8px;
         text-align: center;
     }
 
-    h2{
+    /* [NOVO] Botão de tema com tamanho amigável ao toque */
+    .btn-theme {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+
+    h2 {
         font-size: 30px;
+        margin-bottom: 30px;
     }
 
-    section{
-        padding: 70px 20px;
+    section {
+        padding: 40px 20px;   /* reduzido de 70px — o body já compensa a navbar */
     }
 
-    p{
+    p {
         text-align: justify;
         font-size: 16px;
         line-height: 1.6;
     }
 
-    form{
+    form {
         width: 100%;
+    }
+
+    /* [AJUSTADO] font-size: 16px nos inputs evita o zoom automático
+       do iOS quando o usuário toca no campo. */
+    input,
+    textarea,
+    button {
+        width: 100%;
+        box-sizing: border-box;
+        font-size: 16px;
+        font-family: inherit;
     }
 
     input,
-    textarea,
-    button{
-        width: 100%;
-        box-sizing: border-box;
+    textarea {
+        padding: 10px 12px;
     }
 
     iframe,
-    img{
+    img {
         max-width: 100%;
         height: auto;
+    }
+}
+
+/* =============================================================
+   [NOVO] ?480px — Smartphone pequeno
+   ============================================================= */
+@media (max-width: 480px) {
+
+    body {
+        padding-top: 160px;   /* navbar empilhada ocupa um pouco mais */
+    }
+
+    .logo {
+        font-size: 15px;
+    }
+
+    h2 {
+        font-size: 26px;
+        margin-bottom: 24px;
+    }
+
+    section {
+        padding: 32px 16px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+}
+
+/* =============================================================
+   [NOVO] ?380px — Telas bem estreitas (iPhone SE etc.)
+   ============================================================= */
+@media (max-width: 380px) {
+
+    .logo {
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    nav a {
+        font-size: 14px;
+    }
+
+    .btn-theme {
+        font-size: 13px;
+        padding: 6px 12px;
     }
 }
